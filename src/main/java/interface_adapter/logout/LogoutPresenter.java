@@ -27,13 +27,14 @@ public class LogoutPresenter implements LogoutOutputBoundary {
     public void prepareSuccessView(LogoutOutputData response) {
         // We need to switch to the login view, which should have
         // an empty username and password.
-        var loggedInState = loggedInViewModel.getState();
-        loggedInState.setUsername("");
-        loggedInViewModel.firePropertyChange();
-
         var loginState = loginViewModel.getState();
-        loginState.setUsername(response.getUsername());
+        loginState.setUsername("");
+        loginState.setPassword("");
         loginViewModel.firePropertyChange();
+
+        var loggedInState = loggedInViewModel.getState();
+        loggedInState.setUsername(response.getUsername());
+        loggedInViewModel.firePropertyChange();
 
         this.viewManagerModel.setState(loginViewModel.getViewName());
         this.viewManagerModel.firePropertyChange();

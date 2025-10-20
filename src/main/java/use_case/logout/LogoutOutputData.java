@@ -14,4 +14,5 @@ public class LogoutOutputData {
     public String getUsername() {
         return username;
     }
+
 }
